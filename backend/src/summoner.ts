@@ -12,15 +12,15 @@ export class Summoner {
     this.region = region;
   }
 
-  getSummonerName(){
+  getSummonerName() : string{
     return this.summonerName;
   }
 
-  setSummonerName(summonerName:string) {
+  setSummonerName(summonerName:string) : void{
     this.summonerName = summonerName;
   }
 
-  getRegion() {
+  getRegion() : Regions{
     return this.region;
   }
 
