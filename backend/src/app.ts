@@ -10,16 +10,17 @@ const app: Express = express();
 const port = '8080';
 
 let region = Constants.Regions.EU_WEST
-let summonerName1 = "YngStew1495"
+let summonerName = "YngStew1495"
 
 app.get('/', async (req: Request, res: Response) => {
-  let currentSummoner = new Summoner(summonerName1, region)
+  let currentSummoner = new Summoner(summonerName, region)
   const accountInfo = await currentSummoner.summonerByAccountID()
-  //const accountInfo = await summonerByAccountID()
-  res.send(accountInfo.response);
+  // res.send(accountInfo.response);
+  let accountId = currentSummoner.getAccountId();
+  res.send(accountId)
 
 });
 
 app.listen(port, () => {
-  console.log(`⚡️[server]: Server is running at http://localhost:${port}`);
+  console.log(`[server]: Server is running at http://localhost:${port}`);
 });
