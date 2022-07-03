@@ -17,7 +17,8 @@ export const apiConfig: IBaseApiParams = {
   /**
    * Riot games api key
    */
-  key: 'RGAPI-32daf74c-5646-4980-9542-e1f954f1de9b',
+  //key: 'RGAPI-32daf74c-5646-4980-9542-e1f954f1de9b',
+  key: process.env.RIOT_API_KEY,
   /**
    * Debug methods
    */
