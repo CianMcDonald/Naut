@@ -1,14 +1,14 @@
-import { LolApi } from 'twisted'
+import { IBaseApiParams } from 'twisted/dist/base/base.utils'
 
-const api = new LolApi({
+export const apiConfig: IBaseApiParams = {
    /**
    * If api response is 429 (rate limits) try reattempt after needed time (default true)
    */
-  rateLimitRetry: true
+  rateLimitRetry: true,
   /**
    * Number of time to retry after rate limit response (default 1)
    */
-  rateLimitRetryAttempts: 1
+  rateLimitRetryAttempts: 1,
   /**
    * Concurrency calls to riot (default infinity)
    * Concurrency per method (example: summoner api, match api, etc)
@@ -17,7 +17,7 @@ const api = new LolApi({
   /**
    * Riot games api key
    */
-  key: '',
+  key: 'RGAPI-32daf74c-5646-4980-9542-e1f954f1de9b',
   /**
    * Debug methods
    */
@@ -25,14 +25,14 @@ const api = new LolApi({
     /**
      * Log methods execution time (default false)
      */
-    logTime: false
+    logTime: false,
     /**
      * Log urls (default false)
      */
-    logUrls: false
+    logUrls: false,
     /**
      * Log when is waiting for rate limits (default false)
      */
-    logRatelimit?: false
+    logRatelimits: false,
   }
-})
+}

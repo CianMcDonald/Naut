@@ -1,6 +1,7 @@
 import { LolApi, Constants } from 'twisted'
+import { apiConfig } from './config/lolApiConfig';
 
-const api = new LolApi()
+const api = new LolApi(apiConfig)
 
 export async function summonerByAccountIDExample () {
   let region = Constants.Regions.EU_WEST
@@ -12,3 +13,5 @@ export async function summonerByAccountIDExample () {
   } = await api.Summoner.getByName(summonerName, region)
   return await api.Summoner.getByAccountID(accountId, region)
 }
+
+summonerByAccountIDExample().then(r => {console.log(r)})
