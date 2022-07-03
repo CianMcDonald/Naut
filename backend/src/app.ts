@@ -1,12 +1,21 @@
 import express, { Express, Request, Response } from 'express';
-import { summonerByAccountIDExample } from './summoner';
+
+import { SummonerApi } from 'twisted/dist/apis/lol/summoner/summoner';
+import { Constants } from 'twisted'
+
+import { Summoner } from './summoner';
+
 
 const app: Express = express();
 const port = '8080';
 
+let region = Constants.Regions.EU_WEST
+let summonerName1 = "YngStew1495"
+
 app.get('/', async (req: Request, res: Response) => {
-  const accountInfo = await summonerByAccountIDExample()
-  res.send(accountInfo.response);
+  let currentSummoner = new Summoner(summonerName1, region)
+  //const accountInfo = await summonerByAccountID()
+  //res.send(accountInfo.response);
 
 });
 
