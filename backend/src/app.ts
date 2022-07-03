@@ -14,8 +14,9 @@ let summonerName1 = "YngStew1495"
 
 app.get('/', async (req: Request, res: Response) => {
   let currentSummoner = new Summoner(summonerName1, region)
+  const accountInfo = await currentSummoner.summonerByAccountID()
   //const accountInfo = await summonerByAccountID()
-  //res.send(accountInfo.response);
+  res.send(accountInfo.response);
 
 });
 

@@ -1,14 +1,13 @@
 import { LolApi } from 'twisted' 
-import * as tw from 'twisted'
+import { Regions } from 'twisted/dist/constants';
 import { apiConfig } from './config/lolApiConfig';
-
 const api = new LolApi(apiConfig)
 
 export class Summoner {
   private summonerName:string
-  private region: tw.Constants.Regions
+  private region: Regions
 
-  constructor(summonerName:string, region:tw.Constants.Regions {
+  constructor(summonerName:string, region:Regions) {
     this.summonerName = summonerName;
     this.region = region;
   }
@@ -25,7 +24,7 @@ export class Summoner {
     return this.region;
   }
 
-  setRegion(region:Constants.Regions) {
+  setRegion(region:Regions) {
     this.region = region;
   }
 
@@ -36,9 +35,3 @@ export class Summoner {
   }
 
 }
-
-// export async function summonerByAccountID () {
-//   const requestResponse =  await api.Summoner.getByName(summonerName, region)
-//   const accountId = requestResponse.response.accountId
-//   return await api.Summoner.getByAccountID(accountId, region)
-// }
