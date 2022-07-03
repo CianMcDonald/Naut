@@ -1,31 +1,27 @@
-import { LolApi } from 'twisted' 
-import * as tw from 'twisted'
+import { LolApi, Constants } from 'twisted'
 import { apiConfig } from './config/lolApiConfig';
 
 const api = new LolApi(apiConfig)
 
-export class Summoner {
-  private summonerName:string
-  private region: tw.Constants.Regions
-
-  constructor(summonerName:string, region:tw.Constants.Regions {
+export default class Summoner {
+  constructor(private summonerName:string, private region: Constants.Regions){
     this.summonerName = summonerName;
     this.region = region;
   }
 
-  getSummonerName(){
+  getSummonerName() : string{
     return this.summonerName;
   }
 
-  setSummonerName(summonerName:string) {
+  setSummonerName(summonerName:string) : void{
     this.summonerName = summonerName;
   }
 
-  getRegion() {
+  getRegion() : Constants.Regions{
     return this.region;
   }
 
-  setRegion(region:Constants.Regions) {
+  setRegion(region: string) : void {
     this.region = region;
   }
 
