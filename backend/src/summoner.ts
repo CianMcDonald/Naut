@@ -4,11 +4,12 @@ import { apiConfig } from './config/lolApiConfig';
 const api = new LolApi(apiConfig)
 
 export class Summoner {
+
   private summonerName:string;
   private region: Regions;
   private puuid: string;
 
-  private constructor(summonerName:string, region:Regions) {
+  public constructor(summonerName:string, region:Regions) {
     this.summonerName = summonerName;
     this.region = region;
     this.puuid = "";
@@ -24,8 +25,6 @@ export class Summoner {
     const requestResponse =  await api.Summoner.getByName(this.summonerName, this.region);
     this.setPuuid(requestResponse.response.puuid);
   }
-
-  
 
   getSummonerName() : string{
     return this.summonerName;
@@ -50,7 +49,4 @@ export class Summoner {
   setPuuid(puuid:string) : void{
     this.puuid = puuid;
   }
-
-  
-
 }
