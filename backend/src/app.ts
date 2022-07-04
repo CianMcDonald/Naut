@@ -14,10 +14,10 @@ let summonerName = "YngStew1495"
 
 app.get('/', async (req: Request, res: Response) => {
   let currentSummoner = new Summoner(summonerName, region)
-  const accountInfo = await currentSummoner.summonerByAccountID()
+  const accountInfo = await currentSummoner.summonerByPuuid()
   // res.send(accountInfo.response);
-  let accountId = currentSummoner.getAccountId();
-  res.send(accountId)
+  let puuid = currentSummoner.getPuuid();
+  res.send(puuid)
 
 });
 
