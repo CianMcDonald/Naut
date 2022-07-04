@@ -8,11 +8,24 @@ export class Summoner {
   private region: Regions;
   private puuid: string;
 
-  constructor(summonerName:string, region:Regions) {
+  private constructor(summonerName:string, region:Regions) {
     this.summonerName = summonerName;
     this.region = region;
     this.puuid = "";
   }
+
+  static async build(summonerName:string, region:Regions) {
+    const summoner = new Summoner(summonerName, region);
+    summoner.init();
+    return summoner;
+  } 
+
+  private async init(){
+    const requestResponse =  await api.Summoner.getByName(this.summonerName, this.region);
+    this.setPuuid(requestResponse.response.puuid);
+  }
+
+  
 
   getSummonerName() : string{
     return this.summonerName;
@@ -38,10 +51,6 @@ export class Summoner {
     this.puuid = puuid;
   }
 
-  async summonerByPuuid () {
-    const requestResponse =  await api.Summoner.getByName(this.summonerName, this.region);
-    const puuid = requestResponse.response.puuid;
-    this.setPuuid(puuid);
-    return await api.Summoner.getByPUUID(puuid, this.region);
-  }
+  
+
 }
