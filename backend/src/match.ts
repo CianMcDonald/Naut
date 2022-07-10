@@ -15,10 +15,13 @@ export async function getLatestMatchIds(summoner:Summoner, numMatches:number) {
 
 export async function getLatestMatches(summoner:Summoner, numMatches:number) {
   const matchIdList = await getLatestMatchIds(summoner, numMatches)
+  const matchDataObject = {matches:new Array()};
+  const matchDataList = new Array();
   for (let i = 0; i < matchIdList.length; i++) { 
     const match = (await api.MatchV5.get(matchIdList[i], RegionGroups.EUROPE)).response
-    console.log(match)
+    matchDataList.push(match)
+    matchDataObject["matches"].push(matchDataList)
   }
-  return JSON.stringify(matchIdList[1])
+  return JSON.stringify(matchDataList)
 } 
 
