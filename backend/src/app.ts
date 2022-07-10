@@ -4,7 +4,7 @@ import { SummonerApi } from 'twisted/dist/apis/lol/summoner/summoner';
 import { Constants } from 'twisted'
 
 import { Summoner } from './summoner';
-import { getLatestMatch } from './match';
+import { getLatestMatches } from './match';
 
 const app: Express = express();
 const port = '8080';
@@ -19,8 +19,8 @@ app.get('/', async (req: Request, res: Response) => {
 });
 
 app.get('/match', async (req: Request, res: Response) => {
-  const currentSummoner1 = await Summoner.build(summonerName, region)
-  const m = await getLatestMatch(currentSummoner1)
+  const currentSummoner = await Summoner.build(summonerName, region)
+  const m = await getLatestMatches(currentSummoner, 10)
   console.log(m)
   res.send(m)
 });
