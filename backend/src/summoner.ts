@@ -17,7 +17,7 @@ export class Summoner {
 
   static async build(summonerName:string, region:Regions) {
     const summoner = new Summoner(summonerName, region);
-    summoner.init();
+    await summoner.init();
     return summoner;
   } 
 
@@ -50,3 +50,4 @@ export class Summoner {
     this.puuid = puuid;
   }
 }
+ 
