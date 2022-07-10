@@ -20,7 +20,7 @@ app.get('/', async (req: Request, res: Response) => {
 
 app.get('/match', async (req: Request, res: Response) => {
   const currentSummoner = await Summoner.build(summonerName, region)
-  const m = await getLatestMatches(currentSummoner, 2)
+  const m = await getLatestMatches(currentSummoner, 10)
   res.setHeader('content-type', 'application/json');
   res.send(JSON.stringify(m))
 });
