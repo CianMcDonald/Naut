@@ -22,7 +22,7 @@ app.get('/match', async (req: Request, res: Response) => {
   const currentSummoner = await Summoner.build(summonerName, region)
   const m = await getLatestMatches(currentSummoner, 2)
   res.setHeader('content-type', 'application/json');
-  res.send(m)
+  res.send(JSON.stringify(m))
 });
 
 app.listen(port, () => {
