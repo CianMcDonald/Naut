@@ -1,11 +1,7 @@
-const config = {
-  css: {
-    preprocessorOptions: {
-      scss: {
-        additionalData: '@use "src/variables.scss" as *;',
-      },
-    },
-  },
-};
+import { defineConfig } from 'vite'
+import { svelte } from '@sveltejs/vite-plugin-svelte'
 
-export default config;
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [svelte()]
+})
