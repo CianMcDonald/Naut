@@ -12,7 +12,7 @@ const port = '8080';
 
 let region = Constants.Regions.EU_WEST
 let summonerName = "YngStew1495"
-let numMatches = 10
+let numMatches = 100
 
 app.get('/', async (req: Request, res: Response) => {
   const currentSummoner = await Summoner.build(summonerName, region);
