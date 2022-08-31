@@ -1,22 +1,16 @@
-import express, { Express, Request, Response, json } from "express";
+import express, { Request, Response } from 'express';
+import { LeagueApi } from 'twisted/dist/apis/lol/league/league';
+import { MatchV5Api } from 'twisted/dist/apis/lol/match/match-v5';
+import { SummonerApi } from 'twisted/dist/apis/lol/summoner/summoner';
+import { Regions, regionToRegionGroup } from 'twisted/dist/constants';
+import { ApiResponseDTO, MatchV5DTOs, SummonerLeagueDto, SummonerV4DTO } from 'twisted/dist/models-dto';
 
-import { SummonerApi } from "twisted/dist/apis/lol/summoner/summoner";
-import { Constants } from "twisted";
-import { regionToRegionGroup } from "twisted/dist/constants";
-import { Summoner } from "./summoner";
-import { getLatestMatches, getMatchParticipantInfo } from "./match";
-import { getMyCSAverage } from "./cs";
-import {
-  ApiResponseDTO,
-  SummonerV4DTO,
-  SummonerLeagueDto,
-  MatchDto,
-  MatchV5DTOs,
-} from "twisted/dist/models-dto";
-import { LeagueApi } from "twisted/dist/apis/lol/league/league";
-import { MatchV5Api } from "twisted/dist/apis/lol/match/match-v5";
-import { RegionGroups, Regions } from "twisted/dist/constants";
-const app: Express = express();
+import { summonerRouter } from './routes/summoner.routes';
+import { getMyCSAverage } from './services/cs';
+import { getLatestMatches } from './services/match';
+import { Summoner } from './services/summoner';
+
+const app = express();
 const port = "8080";
 
 let region = "EUW1" as Regions;
@@ -32,7 +26,8 @@ app.get("/", (req: Request, res: Response) => {
   res.send("hello");
 });
 
-app.get("/summoner/basic", async (req: Request, res: Response) => {
+app.use("/summoner", summonerRouter);
+app.get("/summoner/old", async (req: Request, res: Response) => {
   const summonerApi = new SummonerApi();
   const leagueApi = new LeagueApi();
   const matchApi = new MatchV5Api();
